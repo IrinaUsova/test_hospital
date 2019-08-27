@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+{% load static %}
+<html>
+ <head>
+     <link href="{% static 'css/style1.css' %}" rel="stylesheet" type="text/css"/>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+     <title>Таблица</title>
+
+ </head>
+ <body>
+<div class="page-header">
+     {% for d in dep %}
+     <p align="center"> Пациенты, находящиеся в отделении № {{ d.id }} : ({{ d.title }})</p>
+     {% endfor %}
+ </div>
+
+
+ <div class="content container">
+     <table align="center">
+         <tr><th>Пациент</th><th>Лечащий врач</th></tr>
+         {% for r in request2 %}
+             <tr>
+                 <td><a href="">{{ r.name }}</a></td>
+                 <td><p>{{ r.doctor__name }}</p></td>
+             </tr>
+         {% endfor %}
+     </table>
+ </div>
+
+ </body>
+</html>

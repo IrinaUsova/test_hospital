@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+{% load static %}
+<html>
+ <head>
+     <link href="{% static 'css/style1.css' %}" rel="stylesheet" type="text/css"/>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+     <title>Тестовое задание</title>
+
+ </head>
+ <body>
+
+
+   <div class="in">
+     <p align="center"> Запрос 1. Выберите врача, чтобы посмотреть его пациентов. </p>
+
+      <form align="center" action="1" name="id_doctor" method="POST">
+          <label> Введите id врача: </label>
+          <input type="text" name="id_doc">
+          <input type="submit" value="OK">
+          {% csrf_token %}
+          {{ form.as_p }}
+      </form>
+     </div>
+
+   <div class="in">
+     <p align="center"> Запрос 2. Выберите отделение, чтобы посмотреть его пациентов. </p>
+
+      <form align="center" action="2" name="id_depart" method="POST">
+          <label> Введите id отделения: </label>
+          <input type="text" name="id_dep">
+          <input type="submit" value="OK">
+          {% csrf_token %}
+          {{ form.as_p }}
+      </form>
+    </div>
+
+ <div class="page-header">
+     <h1><a>База данных</a></h1>
+ </div>
+
+ <div class="in">
+     <p align="center"> Отделения </p>
+ </div>
+ <div class="content container">
+     <table align="center">
+         <tr><th>id</th><th>Отделения</th><th>Адрес</th></tr>
+         {% for dep in depart %}
+             <tr>
+                 <td >{{ dep.id }}</td>
+                 <td><a href="">{{ dep.title }}</a></td>
+                 <td><p>{{ dep.adress }}</p></td>
+             </tr>
+         {% endfor %}
+     </table>
+ </div>
+
+ <div class="in">
+     <p align="center"> Информация о пациентах </p>
+ </div>
+
+  <div class="content container">
+     <table align="center">
+         <tr><th>id</th><th>Пациент</th><th>Отделение</th><th>Лечащий врач</th></tr>
+         {% for pat in patient %}
+             <tr>
+                 <td >{{ pat.id }}</td>
+                 <td><a href="">{{ pat.name }}</a></td>
+                 <td><p>{{ pat.department }}</p></td>
+                 <td><p>{{ pat.doctor }}</p></td>
+             </tr>
+         {% endfor %}
+     </table>
+ </div>
+
+ <div class="in">
+     <p align="center"> Информация о врачах </p>
+ </div>
+
+  <div class="content container">
+     <table align="center">
+         <tr><th>id</th><th>Врач</th><th>Должность</th></tr>
+         {% for doc in doctor %}
+             <tr>
+                 <td >{{ doc.id }}</td>
+                 <td><a href="">{{ doc.name }}</a></td>
+                 <td><p>{{ doc.position }}</p></td>
+             </tr>
+         {% endfor %}
+     </table>
+ </div>
+ 
+ </body>
+</html>
